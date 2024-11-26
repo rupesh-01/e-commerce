@@ -9,13 +9,13 @@ import com.example.demo.models.Product;
 import com.example.demo.repositories.projections.ProductProjection;
 
 public interface ProductRepository extends JpaRepository<Product,Long>{
-    //example of HQL(Hibernate Query Language)
-    @Query("SELECT p FROM Product where p.title = :title")
-    List<Product> findProuctWithTitle(@Param("title") String title);
+    // example of HQL(Hibernate Query Language)
+//    @Query("SELECT p FROM Product p where p.title = :title")
+//    List<Product> findProductWithTitle(@Param("title") String title);
 
     //example of use of projections
-    @Query("SELECT p.title, p.price, p.description FROM Product where p.price = :price")
-    List<ProductProjection> findProuctWithPrice(@Param("price") double price);
+//    @Query("SELECT p.title, p.price, p.description FROM Product where p.price = :price")
+//    List<ProductProjection> findProductWithPrice(@Param("price") double price);
 
     // example of JPA Query Methods
     Product findByIdIs(Long id);
@@ -23,6 +23,6 @@ public interface ProductRepository extends JpaRepository<Product,Long>{
     List<Product> findAllByCategory_Title(String title);
 
     //example of a native query
-    @Query(value = "SELECT * FROM product p where p.category.title=:categoryName and p.price=:price",nativeQuery = true)
-    List<Product> findProductWithCategoryAndPrice(@Param("categoryName") String name, @Param("price") double price);
+//    @Query(value = "SELECT * FROM product p where p.category.title=:categoryName and p.price=:price",nativeQuery = true)
+//    List<Product> findProductWithCategoryAndPrice(@Param("categoryName") String name, @Param("price") double price);
 }

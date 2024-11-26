@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import java.util.List;
+
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.exceptions.ProductNotFoundException;
@@ -10,6 +12,7 @@ import com.example.demo.repositories.CategoryRepository;
 import com.example.demo.repositories.ProductRepository;
 //import com.example.demo.repositories.projections.ProductProjection;
 
+@Primary
 @Service("ownProductService")
 public class OwnProductService implements ProductService {
     ProductRepository productRepository;
@@ -32,7 +35,7 @@ public class OwnProductService implements ProductService {
     @Override
     public List<Product> getAllProducts() {
         /* Use of Product projection example
-        List<ProductProjection> products = productRepository.findProuctWithPrice(22.5);
+        List<ProductProjection> products = productRepository.findProductWithPrice(22.5);
         products.get(0).getDescription();
         */
         return productRepository.findAll();
