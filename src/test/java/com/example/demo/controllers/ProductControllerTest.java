@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Category;
 import com.example.demo.models.Product;
 import com.example.demo.service.ProductService;
 import org.junit.jupiter.api.Test;
@@ -15,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class ProductContollerTest {
+class ProductControllerTest {
     @Autowired
-    private ProductContoller productContoller;
+    private ProductController productController;
     @MockBean
     private ProductService productService;
 
@@ -38,7 +37,7 @@ class ProductContollerTest {
         expectedProducts.add(p3);
         when(productService.getAllProducts())
                 .thenReturn(expectedProducts);
-        List<Product> actualProduct = productContoller.getAllProducts();
+        List<Product> actualProduct = productController.getAllProducts();
 
         assertEquals(expectedProducts.size(), actualProduct.size());
         for(int i = 0; i < expectedProducts.size(); i++){

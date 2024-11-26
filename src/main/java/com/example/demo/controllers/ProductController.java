@@ -14,10 +14,10 @@ import com.example.demo.models.Product;
 import com.example.demo.service.ProductService;
 
 @RestController
-public class ProductContoller {
+public class ProductController {
     ProductService productService;
 
-    public ProductContoller(@Qualifier("ownProductService") ProductService productService){
+    public ProductController(@Qualifier("ownProductService") ProductService productService){
         this.productService = productService;
     }
     @GetMapping("/product/{id}")
