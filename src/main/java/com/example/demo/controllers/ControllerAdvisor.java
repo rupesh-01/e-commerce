@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,7 +10,7 @@ import com.example.demo.exceptions.ProductErrorResponse;
 import com.example.demo.exceptions.ProductNotFoundException;
 
 @ControllerAdvice
-public class ControllerAdvicer {
+public class ControllerAdvisor {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ProductErrorResponse> handleProductNotFoundExecption(Exception ex){
@@ -18,6 +19,14 @@ public class ControllerAdvicer {
         errorResponse.setMessage(ex.getMessage());
         errorResponse.setTimestamp(System.currentTimeMillis());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ProductErrorResponse> handleUnauthorizedExecption(Exception ex){
+        ProductErrorResponse errorResponse = new ProductErrorResponse();
+        errorResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+        errorResponse.setMessage(ex.getMessage());
+        errorResponse.setTimestamp(System.currentTimeMillis());
+        return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
     
 }
